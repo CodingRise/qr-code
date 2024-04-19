@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR CODE GENERATOR</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body
+    style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+    <div id="head"
+        style="background-color: brown; height: 50px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; color: wheat; border-radius: 10px;">
+        <h3 id="head_h1" style="padding: 10px;">QR CODE GENERATOR <button id="more" class="material-symbols-outlined"
+                style="border-radius: 100%; border: dotted; float: right;">
+                more
+            </button></h3>
+    </div>
+    <div id="body" style="border: 1px solid black; height: 10000px; padding: 10px; margin: 10px; border-radius: 10px; ">
+        <img src="" id="img" style="border: 1px solid black; width: 200px; height: 200px; border-radius: 20px;" />
+        <h1 style='float: right; font-family: system-ui, -apple-system, BlinkMacSystemFont, ' Segoe UI', Roboto, Oxygen,
+            Ubuntu, Cantarell, 'Open Sans' , 'Helvetica Neue' , sans-serif;' id="qrtext">
+            <pre>
+<-------
+Your QR Image
+will be shown
+here when you
+click -----
+'GENERATE'
+</pre>
+        </h1>
+        <br>
+        <hr>
+        <br>
+        <br>
+        <div>
+            <label id="text"
+                style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Enter
+                URL OR TEXT in the below text box</label>
+            <br>
+            <br>
+            <input type="text" id="input" placeholder="Enter the URL OR TEXT to generate qr code"
+                style="width: 300px; border-radius: 10px; padding: 5px; border: 2px dotted black ; font-weight: bolder;" />
+            <br>
+            <br>
+            <button id="generate"
+                style="display:none;float: left; border-radius: 10px; color: wheat; background-color: blue; font-weight: bolder; width: 100px;"><i
+                    class="material-symbols-outlined">arrow_right</i>GENERATE</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <button id="download"
+                style="display:none;float:left; border-radius: 10px; color: wheat; background-color: blue; font-weight: bolder; width: 100px; "><i
+                    class="material-symbols-outlined">download</i> DOWNLOAD</button>
+            <br>
+            <br>
+            <br>
+            <button id="regen"
+                style="display:none;float:left; border-radius: 10px; color: wheat; background-color: blue; font-weight: bolder; width: 100px; "><i
+                    class="material-symbols-outlined">refresh</i> GENERATE ANOTHER ONE </button>
+        </div>
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-button">&times;</span>
+                <pre><i class="material-symbols-outlined" style="font-size: 40px;">read_more</i>      <label style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size: 40px; font-weight: bolder;">Options</label></pre>
+                <hr>
+                <a href="about.html"><button style="border-radius: 10px; background-color: brown; color: wheat; width: 150px; font-weight: bolder;font-size: 20px;"><i class="material-symbols-outlined">info</i> About</button></a>
+                <br>
+                <br>
+                <br>
+                <button id="toggleButton" style="border-radius: 10px; background-color: brown; color: wheat;  font-weight: bolder;font-size: 20px;"><i class="material-symbols-outlined">contrast</i> Theme:Light/Dark</button>
+                <br>
+                <br>
+                <br>
+                <button id="exitButton" style="border-radius: 10px; background-color: brown; color: wheat;  font-weight: bolder;font-size: 20px;"><i class="material-symbols-outlined">exit_to_app</i> Exit application</button>
+            </div>
+
+        </div>
+</body>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48
+    }
+
+    body {
+        height: 100vh;
+
+    }
+
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .popup-content {
+        text-align: center;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        color: #aaa;
+    }
+
+    .close-button:hover {
+        color: black;
+    }
+</style>
+<script>
+    // Disable scrolling
+    document.body.style.overflow = 'hidden';
+    document.getElementById("input").addEventListener("input", function () {
+        var textInputValue = this.value.trim(); // Get the value of the text input and remove leading/trailing whitespace
+        var submitButton = document.getElementById("generate");
+        // If there's text in the input, show the submit button; otherwise, hide it
+        if (textInputValue) {
+            submitButton.style.display = "inline-block";
+        } else {
+            submitButton.style.display = "none";
+        }
+    });
+
+
+    document.getElementById("generate").addEventListener("click", function () {
+        var textInputValue = document.getElementById("input").value.trim(); // Get the value of the text input and remove leading/trailing whitespace
+        if (textInputValue) {
+            var qrCodeImageUrl = "https://api.qrserver.com/v1/create-qr-code/?data=" + encodeURIComponent(textInputValue) + "&size=200x200"; // Generate the QR code image URL
+            document.getElementById("img").src = qrCodeImageUrl; // Set the src attribute of the image element to the QR code image URL
+            document.getElementById("img").style.display = "inline-block"; // Show the image element
+            document.getElementById("qrtext").textContent = 'Your qr image is ready!!!!!!!';
+            document.getElementById('input').style.display = 'none';
+            document.getElementById('text').style.display = 'none';
+            document.getElementById('generate').style.display = 'none';
+            document.getElementById('download').style.display = 'block';
+            document.getElementById('regen').style.display = 'block';
+            document.getElementById("regen").addEventListener("click", function () {
+                location.reload(); // Reload the current page
+            });
+            document.getElementById("download").addEventListener("click", function () {
+                var qrCodeImageUrl = document.getElementById("img").src;
+                var downloadLink = document.createElement("a");
+                downloadLink.href = qrCodeImageUrl;
+                downloadLink.download = "QRCODE_IMAGE.png";
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            });
+        } else {
+            alert("Please enter text or URL to generate QR code.");
+        }
+    });
+
+    document.getElementById("more").addEventListener("click", function () {
+        document.getElementById("popup").style.display = "block";
+    });
+
+    document.querySelector(".close-button").addEventListener("click", function () {
+        document.getElementById("popup").style.display = "none";
+    });
+
+
+// Check if there's a saved background color in local storage
+const savedColor = localStorage.getItem('backgroundColor');
+
+// If there's a saved background color, apply it; otherwise, default to white
+if (savedColor) {
+  document.body.style.backgroundColor = savedColor;
+  // Set text color based on background color
+  if (savedColor === 'black') {
+    document.body.style.color = 'white';
+  } else {
+    document.body.style.color = 'black';
+  }
+} else {
+  document.body.style.backgroundColor = 'white';
+  document.body.style.color = 'black'; // Default text color
+}
+
+// Add event listener to the button
+document.getElementById("toggleButton").addEventListener("click", function() {
+  // Get the current background color
+  const currentColor = document.body.style.backgroundColor;
+
+  // Toggle between black and white background colors
+  if (currentColor === 'white') {
+    document.body.style.backgroundColor = 'black';
+    document.body.style.color = 'white'; // Set text color to white
+    // Save the current background color to local storage
+    localStorage.setItem('backgroundColor', 'black');
+  } else {
+    document.body.style.backgroundColor = 'white';
+    document.body.style.color = 'black'; // Set text color to black
+    // Save the current background color to local storage
+    localStorage.setItem('backgroundColor', 'white');
+  }
+});
+
+
+document.getElementById("exitButton").addEventListener("click", function() {
+  // Display a confirmation dialog
+  var confirmed = confirm("Are you sure you want to exit the application?");
+  
+  // If the user confirms, close the webpage
+  if (confirmed) {
+    window.close();
+  }
+});
+
+</script>
+
+</html>
